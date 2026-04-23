@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vecha Devisri Prasad | Software Developer & AI Enthusiast</title>
+
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Design Tokens & Colors */
+        :root {
+            --bg-color: #050505;
+            --text-main: #f0f0f0;
+            --text-muted: #a1a1aa;
+            --accent-1: #6366f1;
+            /* Indigo */
+            --accent-2: #a855f7;
+            /* Purple */
+            --accent-3: #ec4899;
+            /* Pink */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Ambient Animated Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--bg-color);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .orb-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--accent-1), transparent 70%);
+        }
+
+        .orb-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, var(--accent-2), transparent 70%);
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            top: 40%;
+            left: 50%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, var(--accent-3), transparent 70%);
+            animation-duration: 25s;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(10%, 15%) scale(1.1);
+            }
+        }
+
+        /* Navbar with Glassmorphism */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(5, 5, 5, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent-1), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-2);
+        }
+
+        /* Container & Layout Utilities */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .greeting {
+            color: var(--accent-1);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .title {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            height: 1px;
+            background: var(--glass-border);
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        /* About Section */
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        /* Education Card */
+        .edu-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .edu-icon {
+            font-size: 2.5rem;
+            color: var(--accent-3);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-1);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+            transition: border-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .tag:hover {
+            border-color: var(--accent-2);
+            color: white;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            color: var(--accent-2);
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            color: var(--accent-1);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            transition: gap 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 12px;
+            color: var(--accent-3);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.4s ease;
+        }
+
+        .contact-container:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.1), transparent 50%);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
+            border-color: transparent;
+            transform: translateY(-5px);
+            color: white;
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 50px;
+        }
+
+        /* Scroll Animation Initial State */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        /* Scroll Animation Active State */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-container {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Email Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .email-modal {
+            background: var(--bg-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .modal-overlay.active .email-modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-3);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .modal-desc {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .email-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .email-option-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+
+        .gmail-btn {
+            background: rgba(234, 67, 53, 0.1);
+            color: #ea4335;
+            border-color: rgba(234, 67, 53, 0.3);
+        }
+
+        .gmail-btn:hover {
+            background: #ea4335;
+            color: white;
+        }
+
+        .default-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+        }
+
+        .default-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient Glowing Background Orbs -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="https://drive.google.com/file/d/1IGl1AQERizJa4WelRWmGkm2JkL2k4ZSx/view?usp=sharing" target="_blank"
+                class="logo" title="View Resume">Vecha Devisri Prasad.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content reveal">
+                <span class="greeting">Hi, I'm Vecha Devisri Prasad</span>
+                <h1 class="title">I build intelligent &<br>engaging experiences.</h1>
+                <p class="subtitle">Software Developer | AI Enthusiast | Android Developer</p>
+                <a href="#projects" class="btn-primary">View My Work <i class="fas fa-arrow-right"
+                        style="margin-left: 8px;"></i></a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title reveal">About Me</h2>
+            <div class="reveal">
+                <p class="about-text">
+                    I am a Computer Science student passionate about building real-world applications
+                    in AI, Android, and web development. I enjoy solving complex problems and continuously
+                    learning new technologies to push the boundaries of what's possible.
+                </p>
+                <div class="edu-card">
+                    <i class="fas fa-graduation-cap edu-icon"></i>
+                    <div>
+                        <h3 style="margin-bottom: 5px; font-size: 1.2rem;">B.Tech in Computer Science</h3>
+                        <p style="color: var(--text-muted);">Amrita Vishwa Vidyapeetham, Bangalore</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title reveal">My Skills</h2>
+            <div class="skills-grid">
+
+                <div class="skill-category reveal">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <div class="skill-tags">
+                        <a href="https://www.google.com/search?q=Java" target="_blank" class="tag">Java</a>
+                        <a href="https://www.google.com/search?q=Python" target="_blank" class="tag">Python</a>
+                        <a href="https://www.google.com/search?q=JavaScript" target="_blank" class="tag">JavaScript</a>
+                        <a href="https://www.google.com/search?q=HTML" target="_blank" class="tag">HTML</a>
+                        <a href="https://www.google.com/search?q=CSS" target="_blank" class="tag">CSS</a>
+                    </div>
+                </div>
+
+                <div class="skill-category reveal">
+                    <h3><i class="fas fa-layer-group"></i> Domains</h3>
+                    <div class="skill-tags">
+                        <a href="https://www.google.com/search?q=Android+Development" target="_blank"
+                            class="tag">Android Development</a>
+                        <a href="https://www.google.com/search?q=Machine+Learning" target="_blank" class="tag">Machine
+                            Learning</a>
+                        <a href="https://www.google.com/search?q=Web+Development" target="_blank" class="tag">Web
+                            Development</a>
+                        <a href="https://www.google.com/search?q=AI+Models" target="_blank" class="tag">AI Models</a>
+                        <a href="https://www.google.com/search?q=Frontend" target="_blank" class="tag">Frontend</a>
+                        <a href="https://www.google.com/search?q=Full+Stack" target="_blank" class="tag">Full Stack</a>
+                    </div>
+                </div>
+
+                <div class="skill-category reveal">
+                    <h3><i class="fas fa-wrench"></i> Tools</h3>
+                    <div class="skill-tags">
+                        <a href="https://www.google.com/search?q=Git" target="_blank" class="tag">Git</a>
+                        <a href="https://www.google.com/search?q=GitHub" target="_blank" class="tag">GitHub</a>
+                        <a href="https://www.google.com/search?q=Android+Studio" target="_blank" class="tag">Android
+                            Studio</a>
+                        <a href="https://www.google.com/search?q=VS+Code" target="_blank" class="tag">VS Code</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title reveal">Featured Projects</h2>
+            <div class="projects-grid">
+
+                <!-- Project 1 -->
+                <div class="project-card reveal">
+                    <i class="fas fa-shoe-prints project-icon"></i>
+                    <h3 class="project-title">Step Counter App</h3>
+                    <p class="project-desc">A comprehensive Android application designed for fitness tracking, allowing
+                        users to monitor their steps, calculate calories burned, and set daily goals.</p>
+                    <a href="#" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card reveal">
+                    <i class="fas fa-user-secret project-icon"></i>
+                    <h3 class="project-title">Deepfake Detection</h3>
+                    <p class="project-desc">An advanced AI model built using a hybrid CNN and LSTM architecture to
+                        accurately detect manipulated and fake videos in real-time.</p>
+                    <a href="#" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card reveal">
+                    <i class="fas fa-expand project-icon"></i>
+                    <h3 class="project-title">Face Recognition</h3>
+                    <p class="project-desc">Implemented a highly efficient face recognition system utilizing circulant
+                        matrices to optimize feature extraction and matching.</p>
+                    <a href="#" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-container reveal">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Let's Connect</h2>
+                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 1.1rem;">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
+                    visions.
+                </p>
+                <div class="social-links">
+                    <a href="#" id="emailTriggerBtn" class="social-btn" title="Email"><i
+                            class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/devisri-12" target="_blank" class="social-btn" title="GitHub"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/devisri1005/" target="_blank" class="social-btn"
+                        title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy;
+            <script>document.write(new Date().getFullYear())</script> Vecha Devisri Prasad. Built with passion.
+        </p>
+    </footer>
+
+    <!-- Email Choice Modal -->
+    <div class="modal-overlay" id="emailModal">
+        <div class="email-modal">
+            <button class="modal-close" id="closeModalBtn"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title">Send Email</h3>
+            <p class="modal-desc">Choose how you would like to open your email client.</p>
+            <div class="email-options">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=devisriprasad0206@gmail.com" target="_blank"
+                    class="email-option-btn gmail-btn">
+                    <i class="fab fa-google"></i> Open in Gmail
+                </a>
+                <a href="mailto:devisriprasad0206@gmail.com" class="email-option-btn default-btn">
+                    <i class="fas fa-envelope"></i> Open Default App (Outlook)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Animation Script to reveal elements dynamically -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Email Modal Logic
+            const emailTriggerBtn = document.getElementById('emailTriggerBtn');
+            const emailModal = document.getElementById('emailModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            if (emailTriggerBtn) {
+                emailTriggerBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    emailModal.classList.add('active');
+                });
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => {
+                    emailModal.classList.remove('active');
+                });
+            }
+
+            if (emailModal) {
+                emailModal.addEventListener('click', (e) => {
+                    if (e.target === emailModal) {
+                        emailModal.classList.remove('active');
+                    }
+                });
+            }
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('active');
+                        // Stop observing once it's revealed to keep it visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+
+</html>
